@@ -1,5 +1,5 @@
 #[test]
 fn test_function() {
-    // Your test code goes here
+    // TODO:
     assert_eq!(2 + 2, 4);
 }

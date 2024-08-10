@@ -7,7 +7,7 @@
 ##### TODO:
 - [ ] implement a dummy web service with ping-pong
 - [x] implement dummy tokio client
-- [ ] implement dummy tokio server
+- [x] implement dummy tokio server
     - [ ] remove mini_redis from main.rs and replace it with generic one
     - [ ] donno how exactly. Maybe after Tokio tutorial it will be better
 - [ ] add a test for ping-pong to check it
@@ -22,6 +22,7 @@
     - [ ] handle 10+ seconds no-response case
 
 
-#### Test
-`cargo test`
-
+#### How to use
+- run client app - `cargo run --example client`
+- run server app - `cargo run`
+- test - `cargo test`
