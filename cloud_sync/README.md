@@ -6,7 +6,9 @@
 
 ##### TODO:
 - [ ] implement a dummy web service with ping-pong
-- [ ] implement dummy tokio client and server
+- [x] implement dummy tokio client
+- [ ] implement dummy tokio server
+    - [ ] remove mini_redis from main.rs and replace it with generic one
     - [ ] donno how exactly. Maybe after Tokio tutorial it will be better
 - [ ] add a test for ping-pong to check it
 - [ ] add a test for an endpoint `/wait-for-second-party/:unique-id`

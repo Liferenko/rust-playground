@@ -7,3 +7,5 @@ author = "Paul Liferenko<liferenko.it@gmail.com>"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+tokio = { version = "1", features = ["full"] }
+mini-redis = "0.4"
