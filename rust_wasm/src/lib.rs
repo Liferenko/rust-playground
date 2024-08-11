@@ -3,6 +3,9 @@
 
 use wasm_bindgen::prelude::*;
 
+// pub struct Promise<T: Send, E: Send> {/* TODO: */}
+// // https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html
+
 #[wasm_bindgen]
 extern "C" {
     fn alert(s: &str);
@@ -12,9 +15,12 @@ extern "C" {
 // TODO:
 // - result should be  Promise<string>
 #[wasm_bindgen]
-pub fn ws_ping(endpoint: &str, message: &str) {
+// pub async fn ws_ping(endpoint: &str, message: &str) -> String {
+pub fn ws_ping(endpoint: &str, message: &str) -> String {
     // TODO:
-    alert(&format!("Sup, {} {}!", endpoint, message));
+    // alert(&format!("Sup, {} {}!", endpoint, message));
+
+    format!("Sup, {} {}!", endpoint, message).to_string()
 }
 
 // TODO: REMOVE BEFORE FLIGHT!!!!!!

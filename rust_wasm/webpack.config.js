@@ -4,10 +4,10 @@ const webpack = require('webpack');
 const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
 
 module.exports = {
-	entry: './index.js',
+	entry: './index.cjs',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'index.js',
+		filename: 'index.cjs',
 	},
 	plugins: [
 		new HtmlWebpackPlugin(),
@@ -16,6 +16,9 @@ module.exports = {
 		}),
 	],
 	mode: 'development',
+	resolve: {
+		extensions: ['.wasm'],
+	},
 	experiments: {
 		asyncWebAssembly: true
 	}

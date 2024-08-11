@@ -35,7 +35,7 @@ There are 3 test challenges. You could take at least one.
 
 #### 2: Simple web application: Wasm + web sockets.
 
-[Task's README](./rust-wasm/README.md)
+[Task's README](./rust_wasm/README.md)
 ---
 
 #### 3: Cloud sync-point.
