@@ -18,12 +18,6 @@ pub fn ws_ping(endpoint: &str, message: &str) {
 }
 
 // TODO: REMOVE BEFORE FLIGHT!!!!!!
-#[wasm_bindgen]
-pub fn greet(name: &str) {
-    alert(&format!("Sup, {}!", name));
-}
-
-// TODO: REMOVE BEFORE FLIGHT!!!!!!
 //
 // pub fn add(left: usize, right: usize) -> usize {
 //     left + right

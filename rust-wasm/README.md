@@ -11,7 +11,8 @@ NB! is it a lib with macro? I mean Rust -> TS?
 - [x] implement a dummy Rust lib
 - [x] a simple test executed wasm-pack
 - [in progress] a simple test executed by nodejs/deno/bun (my note: I'd choose bun)
-- [ ] export a wsPing method in JS file
+- [x] export a wsPing method in JS file
+    - [ ] resolce import issue of `import {wsPing} from ./pkg`  
 - [ ] add a method `wsPing(endpoint: string, message: string): Promise<string>`
     - reference - https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html
 - [ ] establish a web socket connection to the "endpoint"

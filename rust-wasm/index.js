@@ -1,3 +1,3 @@
-import { greet, wsPing } from './pkg';
+import { wsPing } from './pkg';
 
 wsPing("TODO endpoint", "message");
