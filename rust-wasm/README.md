@@ -18,6 +18,21 @@ NB! is it a lib with macro? I mean Rust -> TS?
     - [ ] receive a message,
     - [ ] and return its content
 
+##### DoD:
+- [x] Is it in Rust?
+- [x] Is it a library?
+- [ ] Does it compiles into Wasm?
+- [ ] Does it export one function wsPing/2?
+- [ ] Does exported function have Promise<string> as a return?
+- [ ] Does the function establish a web socket connection to the "endpoint"?
+- [ ] Does it send the text message? receive a message, and return its content?
+- [ ] Does it receive a message? and return its content?
+- [ ] Does it return its content?
+- [ ] Is it possible to test it using `make bun_test`?
+- [ ] Does the final stack contain `Rust + wasm-bindings + ...`?
+- [ ] Did you remove all `// REMOVE BEFORE FLIGHT!!!!!!` and TODOs?
+- [ ] Have you already sent this repo's link to this task?
+
 
 #### How to use
 - `make wasm_test`
