@@ -10,9 +10,10 @@ wsPing(endpoint: string, message: string): Promise<string>
 NB! is it a lib with macro? I mean Rust -> TS?
 - [x] implement a dummy Rust lib
 - [x] a simple test executed wasm-pack
-- [ ] a simple test executed by nodejs/deno/bun (my note: I'd choose bun)
+- [in progress] a simple test executed by nodejs/deno/bun (my note: I'd choose bun)
 - [ ] export a wsPing method in JS file
 - [ ] add a method `wsPing(endpoint: string, message: string): Promise<string>`
+    - reference - https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html
 - [ ] establish a web socket connection to the "endpoint"
     - [ ] send the text message
     - [ ] receive a message,
@@ -31,6 +32,8 @@ NB! is it a lib with macro? I mean Rust -> TS?
 - [ ] Is it possible to test it using `make bun_test`?
 - [ ] Does the final stack contain `Rust + wasm-bindings + ...`?
 - [ ] Did you remove all `// REMOVE BEFORE FLIGHT!!!!!!` and TODOs?
+- [ ] Have the code been clean and carefully written?
+- [ ] Have this code been well-commented;
 - [ ] Have you already sent this repo's link to this task?
 
 

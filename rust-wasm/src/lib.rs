@@ -8,11 +8,23 @@ extern "C" {
     fn alert(s: &str);
 }
 
+// ref - wsPing(endpoint: string, message: string): Promise<string>
+// TODO:
+// - result should be  Promise<string>
+#[wasm_bindgen]
+pub fn ws_ping(endpoint: &str, message: &str) {
+    // TODO:
+    alert(&format!("Sup, {} {}!", endpoint, message));
+}
+
+// TODO: REMOVE BEFORE FLIGHT!!!!!!
 #[wasm_bindgen]
 pub fn greet(name: &str) {
     alert(&format!("Sup, {}!", name));
 }
 
+// TODO: REMOVE BEFORE FLIGHT!!!!!!
+//
 // pub fn add(left: usize, right: usize) -> usize {
 //     left + right
 // }
