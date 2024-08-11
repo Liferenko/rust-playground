@@ -1,3 +1,3 @@
-import { wsPing } from './pkg';
+import { ws_ping } from './pkg/rust_wasm.js';
 
-wsPing("TODO endpoint", "message");
+ws_ping("TODO endpoint", "message");
