@@ -10,7 +10,7 @@
 - [ ] implement a dummy web service with ping-pong
     - [x] make dummy ping-pong
     - [x] make dummy ping-pong from cli args
-    - [ ] make dummy ping-pong with N sec delay
+    - [x] make dummy ping-pong with N sec delay
     - [ ] make dummy ping-pong when 2nd party appears
     - [ ] remove mini_redis from main.rs and replace it with generic one
     - [ ] donno how exactly. Maybe after Tokio tutorial it will be better
