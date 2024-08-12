@@ -5,9 +5,13 @@
 - Rust: tokio + anything else you need.
 
 ##### TODO:
-- [ ] implement a dummy web service with ping-pong
 - [x] implement dummy tokio client
 - [x] implement dummy tokio server
+- [ ] implement a dummy web service with ping-pong
+    - [x] make dummy ping-pong
+    - [x] make dummy ping-pong from cli args
+    - [ ] make dummy ping-pong with N sec delay
+    - [ ] make dummy ping-pong when 2nd party appears
     - [ ] remove mini_redis from main.rs and replace it with generic one
     - [ ] donno how exactly. Maybe after Tokio tutorial it will be better
 - [ ] add a test for ping-pong to check it
@@ -15,6 +19,7 @@
     - [x] run test `cargo test`
     - [ ] add test case with 1st party request and no response
     - [ ] add test case with 1st party request and 2nd party 
+- [ ] add endpoint `/wait-for-second-party/:unique-id` in Tokio's router
 - [ ] handle 1st party's POST request
 - [ ] wait for 2nd party's POST request
 - [ ] handle a response when 2nd party's request appears

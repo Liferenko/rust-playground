@@ -51,6 +51,8 @@ NB! is it a lib with macro? I mean Rust -> TS?
     - [ ] receive a message,
     - [ ] and return its content
 ---
+Resources: 
+- how to import async wasm - https://modernjs.dev/en/guides/basic-features/wasm-assets.html
 
 #### 3: Cloud sync-point.
 

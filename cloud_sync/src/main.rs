@@ -22,21 +22,22 @@ async fn process(socket: TcpStream) {
     use mini_redis::Command::{self, Get, Set};
     use std::collections::HashMap;
 
-    let mut db = HashMap::new();
+    let mut db = HashMap::new(); // TODO: use shared state
     let mut conn = Connection::new(socket);
 
     while let Some(frame) = conn.read_frame().await.unwrap() {
         let response = match Command::from_frame(frame).unwrap() {
+            // Set(cmd) => Frame::Simple("ping".to_string()),
             Set(cmd) => {
                 db.insert(cmd.key().to_string(), cmd.value().to_vec());
                 println!("req: {:?}", cmd);
-                println!("expire in {:?}", cmd.expire());
                 // TODO: wait for 2nd party's request
-                Frame::Simple("wait for 2nd party's request".to_string())
+                Frame::Simple("OK".to_string())
             }
 
             Get(cmd) => {
                 if let Some(value) = db.get(cmd.key()) {
+                    println!("Seems like here I'll be waiting for 2nd party");
                     Frame::Bulk(value.clone().into())
                 } else {
                     Frame::Null
