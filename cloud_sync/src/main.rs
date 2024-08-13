@@ -9,6 +9,7 @@ async fn main() {
 
     let listener = TcpListener::bind(addr).await.unwrap();
 
+    // TODO: add endpoint /wait-for-second-party/:unique-id
     loop {
         let (socket, _) = listener.accept().await.unwrap();
 
@@ -30,13 +31,13 @@ async fn process(socket: TcpStream) {
             // Set(cmd) => Frame::Simple("ping".to_string()),
             Set(cmd) => {
                 db.insert(cmd.key().to_string(), cmd.value().to_vec());
-                println!("req: {:?}", cmd);
+                dbg!("req: {:?}", cmd);
                 // TODO: wait for 2nd party's request
                 Frame::Simple("OK".to_string())
             }
 
             Get(cmd) => {
-                if let Some(value) = db.get(cmd.key()) {
+                if let Some(value) = db.get(cmd.key().to_string().as_str()) {
                     println!("Seems like here I'll be waiting for 2nd party");
                     Frame::Bulk(value.clone().into())
                 } else {

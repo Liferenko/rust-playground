@@ -9,3 +9,4 @@ author = "Paul Liferenko<liferenko.it@gmail.com>"
 [dependencies]
 tokio = { version = "1", features = ["full"] }
 mini-redis = "0.4"
+warp = "0.3.7"

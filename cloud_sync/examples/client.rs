@@ -20,7 +20,7 @@ async fn main() -> Result<()> {
 
         // Timeout for waiting 2nd party's request
         // TODO: seems like it belongs to server side
-        tokio::time::sleep(Duration::from_millis(4000)).await;
+        // tokio::time::sleep(Duration::from_millis(4000)).await;
 
         // Get a response from server
         let result = client.get(&msg_arg).await?; // TODO: response when 2nd party sent a request
