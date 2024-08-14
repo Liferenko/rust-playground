@@ -2,6 +2,8 @@
 //
 
 use wasm_bindgen::prelude::*;
+// use wasm_bindgen_test::console_log;
+use web_sys::console;
 
 // pub struct Promise<T: Send, E: Send> {/* TODO: */}
 // // https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html
@@ -11,16 +13,38 @@ extern "C" {
     fn alert(s: &str);
 }
 
+#[wasm_bindgen(start)]
+pub fn main_js() -> Result<(), JsValue> {
+    // This provides better error messages in debug mode.
+    // It's disabled in release mode so it doesn't bloat up the file size.
+    #[cfg(debug_assertions)]
+    console_error_panic_hook::set_once();
+
+    // Call you await
+    let response = ws_ping("/snacks", "Spicy chips");
+
+    console::log_1(&JsValue::from_str("Sup, big boy"));
+
+    console::log_1(&JsValue::from_str(&response));
+
+    Ok(())
+}
+
 // ref - wsPing(endpoint: string, message: string): Promise<string>
 // TODO:
 // - result should be  Promise<string>
 #[wasm_bindgen]
 // pub async fn ws_ping(endpoint: &str, message: &str) -> String {
 pub fn ws_ping(endpoint: &str, message: &str) -> String {
+    #[cfg(debug_assertions)]
+    console_error_panic_hook::set_once();
+
     // TODO:
     // alert(&format!("Sup, {} {}!", endpoint, message));
 
     format!("Sup, {} {}!", endpoint, message).to_string()
+    // console::log_1(&JsValue::from_str("Sup, here is a message"));
+    // console::log_1(&JsValue::from_str(message));
 }
 
 // TODO: REMOVE BEFORE FLIGHT!!!!!!
@@ -41,7 +65,7 @@ pub fn ws_ping(endpoint: &str, message: &str) -> String {
 //     // }
 //
 //     #[test]
-//     fn entrypoint_test() {
-//         assert_eq!(greet("Spicy chips!"), "Sup, Spicy chips!");
+//     fn endpoint_test() {
+//         assert_eq!(ws_ping("/snacks", "Spicy chips!"), "Sup, Spicy chips!");
 //     }
 // }

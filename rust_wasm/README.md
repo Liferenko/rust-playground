@@ -10,11 +10,13 @@ wsPing(endpoint: string, message: string): Promise<string>
 NB! is it a lib with macro? I mean Rust -> TS?
 - [x] implement a dummy Rust lib
 - [x] a simple test executed wasm-pack
-- [ ] a simple test executed by nodejs/deno/bun (my note: I'd choose bun)
+- [x] a simple test executed by nodejs/deno/bun (my note: I'd choose bun)
+    - [x] resolve issue with node --test `/rust_wasm/target/wasm32-unknown-unknown/wbg-tmp-wasm-57b6470e2ea53f91.wasm/wasm-bindgen-test.js`
+
 - [x] export a wsPing method in JS file
-    - [ ] resolce import issue of `import {wsPing} from ./pkg`  
-- [...] add a method `wsPing(endpoint: string, message: string): Promise<string>`
-    - reference - https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html
+    - [x] resolve import issue of `import {wsPing} from ./pkg`  
+- [x] add a method `wsPing(endpoint: string, message: string): Promise<string>`
+    - [ ] return Promise<string>` (reference - https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html)
 - [ ] establish a web socket connection to the "endpoint"
     - [ ] send the text message
     - [ ] receive a message,
@@ -23,11 +25,11 @@ NB! is it a lib with macro? I mean Rust -> TS?
 ##### DoD:
 - [x] Is it in Rust?
 - [x] Is it a library?
-- [ ] Does it compiles into Wasm?
-- [ ] Does it export one function wsPing/2?
+- [x] Does it compiles into Wasm?
+- [x] Does it export one function wsPing/2?
 - [ ] Does exported function have Promise<string> as a return?
 - [ ] Does the function establish a web socket connection to the "endpoint"?
-- [ ] Does it send the text message? receive a message, and return its content?
+- [x] Does it send the text message?
 - [ ] Does it receive a message? and return its content?
 - [ ] Does it return its content?
 - [ ] Is it possible to test it using `make bun_test`?
@@ -40,7 +42,7 @@ NB! is it a lib with macro? I mean Rust -> TS?
 
 #### How to use
 - `make wasm_test`
-- `make bun_test`
+- `make test`
 
 
 
