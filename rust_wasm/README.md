@@ -13,11 +13,13 @@ NB! is it a lib with macro? I mean Rust -> TS?
 - [x] a simple test executed by nodejs/deno/bun (my note: I'd choose bun)
     - [x] resolve issue with node --test `/rust_wasm/target/wasm32-unknown-unknown/wbg-tmp-wasm-57b6470e2ea53f91.wasm/wasm-bindgen-test.js`
 
-- [x] export a wsPing method in JS file
+- [ ] export a wsPing method in JS file
     - [x] resolve import issue of `import {wsPing} from ./pkg`  
 - [x] add a method `wsPing(endpoint: string, message: string): Promise<string>`
     - [ ] return Promise<string>` (reference - https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html)
 - [ ] establish a web socket connection to the "endpoint"
+    - [x] try Rust+WS example as a standalone app
+    - [ ] find right place for websocket code
     - [ ] send the text message
     - [ ] receive a message,
     - [ ] and return its content
