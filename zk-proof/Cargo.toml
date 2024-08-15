@@ -6,3 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+json = {version = "0.12.4"}
+sha256 = {version = "1.5.0"}
+ecdsa = {version = "0.16.9"}
+chrono = "0.4.38"
+# elliptic_curve = {version = "0.13.8"} // Might use ecdsa::ellip...
