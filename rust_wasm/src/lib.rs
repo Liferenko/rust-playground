@@ -5,6 +5,8 @@ use wasm_bindgen::prelude::*;
 // use wasm_bindgen_test::console_log;
 use web_sys::console;
 
+// TODO: from websocket example
+
 // pub struct Promise<T: Send, E: Send> {/* TODO: */}
 // // https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html
 
@@ -21,9 +23,10 @@ pub fn main_js() -> Result<(), JsValue> {
     console_error_panic_hook::set_once();
 
     // Call you await
+    // TODO: smells like poopy. Need to rework it
     let response = ws_ping("/snacks", "Spicy chips");
 
-    console::log_1(&JsValue::from_str("Sup, big boy"));
+    console::log_1(&JsValue::from_str("Initialized"));
 
     console::log_1(&JsValue::from_str(&response));
 
@@ -40,11 +43,9 @@ pub fn ws_ping(endpoint: &str, message: &str) -> String {
     console_error_panic_hook::set_once();
 
     // TODO:
-    // alert(&format!("Sup, {} {}!", endpoint, message));
+    alert(&format!("Sup, {} {}!", endpoint, message));
 
     format!("Sup, {} {}!", endpoint, message).to_string()
-    // console::log_1(&JsValue::from_str("Sup, here is a message"));
-    // console::log_1(&JsValue::from_str(message));
 }
 
 // TODO: REMOVE BEFORE FLIGHT!!!!!!

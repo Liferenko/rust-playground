@@ -1,17 +1,18 @@
+use futures::{SinkExt, StreamExt};
+use log::{error, info};
+use std::net::SocketAddr;
 use tokio::net::{TcpListener, TcpStream};
 use tokio_tungstenite::{accept_async, tungstenite::protocol::Message};
-use futures::{StreamExt, SinkExt};
-use std::net::SocketAddr;
-use log::{info, error};
-
-
 
 #[tokio::main]
 async fn main() {
     env_logger::init();
 
     // let it be hardcoded ip and port for cyrrent task
-    let addr: SocketAddr = "127.0.0.1:4011".to_string().parse().expect("Invalid address");
+    let addr: SocketAddr = "127.0.0.1:4011"
+        .to_string()
+        .parse()
+        .expect("Invalid address");
 
     // create tcp listener
     let listener = TcpListener::bind(&addr).await.expect("Failed to bind");
@@ -42,16 +43,16 @@ async fn handle_conn(stream: TcpStream) {
             Err(e) => {
                 error!("Error processing msg: {}", e);
                 break;
-            },
+            }
             Ok(Message::Text(text)) => {
                 // TODO handle msg the way I need
                 let uppercased = text.to_uppercase();
                 if let Err(e) = sender.send(Message::Text(uppercased)).await {
                     error!("Error while sending msg: {}", e);
                 }
-            },
+            }
             Ok(Message::Close(_)) => break,
-            Ok(_) => ()
+            Ok(_) => (),
         }
     }
 }
