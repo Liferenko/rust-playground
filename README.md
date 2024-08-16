@@ -35,26 +35,14 @@ There are 3 test challenges. You could take at least one.
 
 #### 2: Simple web application: Wasm + web sockets.
 
-- A Rust library that should be compiled to Wasm and export one function (Typescript syntax)
-wsPing(endpoint: string, message: string): Promise<string>
-- This function should establish a web socket connection to the "endpoint" and send the text message, receive a message, and return its content.
-- Any UI will be sufficient, but a simple test executed by nodejs/deno/bun would be OK. 
-- Rust + wasm-bindings + anything else you need.
-
-##### TODO:
-NB! is it a lib with macro? I mean Rust -> TS?
-- [ ] implement a dummy Rust lib
-- [ ] a simple test executed by nodejs/deno/bun (my note: I'd choose bun)
-- [ ] add a method `wsPing(endpoint: string, message: string): Promise<string>`
-- [ ] establish a web socket connection to the "endpoint"
-    - [ ] send the text message
-    - [ ] receive a message,
-    - [ ] and return its content
+[Task's README](./rust_wasm/README.md)
 ---
 Resources: 
 - how to import async wasm - https://modernjs.dev/en/guides/basic-features/wasm-assets.html
 
 #### 3: Cloud sync-point.
+
+[open README](./cloud_sync/README.md)
 
 - Small web service with one endpoint: /wait-for-second-party/:unique-id
 - This endpoint allows two parties to sync. When one party makes a POST request, the response will be delayed until the second party requests the same URL. In other words, the first party is blocked until the second party arrives or a timeout occurs (let it be 10 seconds).
@@ -75,6 +63,6 @@ Resources:
 
 ---
 
-#### Current task's stack:
+#### Resourses used:
 - https://tokio.rs/
 
