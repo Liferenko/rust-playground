@@ -1,13 +1,12 @@
 [package]
-name = "web-sockets"
+name = "cloud_sync"
 version = "0.1.0"
 edition = "2021"
+author = "Paul Liferenko<liferenko.it@gmail.com>"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tokio = { version = "1", features = ["full"]}
-tokio-tungstenite = "0.15"
-futures = "0.3"
-log = "0.4"
-env_logger = "0.9"
+tokio = { version = "1", features = ["full"] }
+mini-redis = "0.4"
+warp = "0.3.7"
