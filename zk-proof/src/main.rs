@@ -2,33 +2,37 @@
 // use secrets; // TODO find in rs
 // use core::time;
 use chrono::Utc;
+use crypto_bigint::consts::U256;
+use core::str;
 use std::fmt::format;
 use std::collections::HashMap;
 use getrandom;
 
 use crypto_bigint::{U256, Encoding};
-use ecdsa;
-use ecdsa::elliptic_curve; // TODO find PointJacobi
+use ecdsa::{self, ECDSA_SHA224_OID};
+use ecdsa::elliptic_curve::{self, point}; // TODO find PointJacobi
 use std::hash::Hash;
 use sha256::digest;
 
 
 
-static curve = todo!("ecdsa::p256");
-static generator = todo!("curve.generator");
-static q = todo!("curve.order");
+const curve = todo!("ecdsa::p256"); //TODO: shall I use static instead?
+const G = todo!("curve.generator");
+const Q = todo!("curve.order");
 
 
 
-fn generate_random_number() -> Uint {
+fn generate_random_number() -> U256 {
     U256::from_le_bytes(getrandom::getrandom(&mut [0u8; 32])?)
 }
 
+// TODO:
+// - define PointJacobi
 #[derive(PartialEq)]
 struct DLogProof {
     fn 
 
-    fn _hash_points(sid: str, pid: u8, points: [PointJacobi]) -> U256  // TODO replace PointJacobi
+    fn _hash_points(sid: &str, pid: u8, points: [PointJacobi]) -> U256  // TODO replace PointJacobi
 
     fn prove(sid: &str, pid: u8, x: u128, y: PointJacobi, base_point: PointJacobi = G) -> boolean,
 
@@ -41,10 +45,24 @@ struct DLogProof {
 }
 
 impl DLogProof {
-    let curve = todo!("ecdsa::p256");
-    let generator = todo!("curve.generator");
-    let q = todo!("curve.order");
+    fn _hash_points(sid: &str, pid: u8, points: Vec<PointJacobi>) {
+        let string_field = ""; // TODO: StringField
+        let bigint_field = U256::new();
+        let pount_field = ECDSA_SHA224_OID; // TODO:
 
+        let mut digest_data = String::new();
+        digest_data.push_str(string_field.to_bytes(sid)); // TODO: replace .to_bytes(sid)
+        digest_data.push(bigint_field.to_bytes(pid)); // TODO: replace .to_bytes(sid) && .push or
+        // .push_str?
+        
+        for point in points {
+            digest_data.push(pount_field.to_bytes(point));
+        }
+
+        let digest = sha256::digest(digest_data);
+
+        U256::from(digest);
+    }
 
     // TODO: find out how to impl __init__
 
@@ -85,11 +103,16 @@ impl DLogProof {
 }
 
 // TODO: find out how to impl __eq__
-// TODO: find out how to impl __ne__
-impl PartialEq for DLogProof {
-    fn eq(&self, other) {
+// TODO: find out how to impl __ne__  - check this one https://docs.rs/ec_core/latest/ec_core/elliptic_curve/struct.EllipticCurve.html#method.ne
+impl PartialEq<EllipticCurve> for DLogProof {
+    fn eq(&self, other) -> bool {
         assert!(type(other), DLogProofField, "Can only compare DLogProofs") // TODO:
         // doublecheck `type(other)` and assert!/3 with msg as 3rd arg
+    }
+
+    fn ne(&self, other: &EllipticCurve) -> bool {
+        todo!()
+        // ref - https://docs.rs/ec_core/latest/ec_core/elliptic_curve/struct.EllipticCurve.html#method.ne
     }
 } 
 

@@ -21,7 +21,7 @@
         - [ ] inherit `dlog_proof:from_dict(data)`
 
 #### Glossari:
-- ZK - zero-knowledge
+- ZK - zero-knowledge (read more (paywall alarm) - https://rabmcmenemy.medium.com/zero-knowledge-proofs-zk-proofs-in-rust-2f65c43d3458 - )
 - DLOG - discrete log
 - ECDSA - Elliptic Curve Digital Signature Algorithm
 
