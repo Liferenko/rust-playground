@@ -45,7 +45,14 @@ struct DLogProof {
 }
 
 impl DLogProof {
-    fn _hash_points(sid: &str, pid: u8, points: Vec<PointJacobi>) {
+    // TODO: find out how to impl __init__
+    fn new(self, t: PointJacobi, s: u8) {
+        self.t = t;
+        self.s = s;
+        // TODO looks bad. Need to double-check those self.* entities
+    }
+    
+    fn _hash_points(self, sid: &str, pid: u8, points: Vec<PointJacobi>) {
         let string_field = ""; // TODO: StringField
         let bigint_field = U256::new();
         let pount_field = ECDSA_SHA224_OID; // TODO:
@@ -64,9 +71,8 @@ impl DLogProof {
         U256::from(digest);
     }
 
-    // TODO: find out how to impl __init__
 
-    fn prove(sid: &str, pid: u8, x: u128, y: PointJacobi, base_point: PointJacobi = G) {
+    fn prove(self, sid: &str, pid: u8, x: u128, y: PointJacobi, base_point: PointJacobi = G) {
         let r = generate_random_number();
         let t = r * base_point;
         let c = DLogProof._hash_points(sid, pid, [base_point, y, t]);
