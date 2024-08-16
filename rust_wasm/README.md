@@ -1,5 +1,9 @@
 ## Simple web application: Wasm + web sockets.
 
+---
+> The code currently is not stable due to compilation issues
+---
+
 - A Rust library that should be compiled to Wasm and export one function (Typescript syntax)
 wsPing(endpoint: string, message: string): Promise<string>
 - This function should establish a web socket connection to the "endpoint" and send the text message, receive a message, and return its content.
@@ -15,13 +19,14 @@ NB! is it a lib with macro? I mean Rust -> TS?
 
 - [ ] export a wsPing method in JS file
     - [x] resolve import issue of `import {wsPing} from ./pkg`  
+    - [ ] resolve issue with wasm import
 - [x] add a method `wsPing(endpoint: string, message: string): Promise<string>`
-    - [ ] return Promise<string>` (reference - https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html)
+    - [x] return Promise<string>` (reference - https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html)
 - [ ] establish a web socket connection to the "endpoint"
     - [x] try Rust+WS example as a standalone app
-    - [ ] find right place for websocket code
-    - [ ] send the text message
-    - [ ] receive a message,
+    - [x] find right place for websocket code
+    - [x] send the text message
+    - [x] receive a message,
     - [ ] and return its content
 
 ##### DoD:
@@ -32,19 +37,18 @@ NB! is it a lib with macro? I mean Rust -> TS?
 - [ ] Does exported function have Promise<string> as a return?
 - [ ] Does the function establish a web socket connection to the "endpoint"?
 - [x] Does it send the text message?
-- [ ] Does it receive a message? and return its content?
+- [x] Does it receive a message?
 - [ ] Does it return its content?
 - [ ] Is it possible to test it using `make bun_test`?
-- [ ] Does the final stack contain `Rust + wasm-bindings + ...`?
+- [x] Does the final stack contain `Rust + wasm-bindings + ...`?
 - [ ] Did you remove all `// REMOVE BEFORE FLIGHT!!!!!!` and TODOs?
 - [ ] Have the code been clean and carefully written?
 - [ ] Have this code been well-commented;
-- [ ] Have you already sent this repo's link to this task?
+- [x] Have you already sent this repo's link to this task?
 
 
 #### How to use
-- `make wasm_test`
-- `make test`
+- `make start`
 
 
 

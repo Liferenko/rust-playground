@@ -1,16 +1,18 @@
 // TODO: add entrypoint test: send req, send resp, show its content
 //
 
+use std::future::{self, Future};
 use wasm_bindgen::prelude::*;
+use wasm_bindgen_futures::future_to_promise;
 // use wasm_bindgen_test::console_log;
 use web_sys::console;
 
-// TODO: from websocket example
 use futures::{SinkExt, StreamExt};
+use tokio_tungstenite::{accept_async, tungstenite::protocol::Message};
+
 use log::{error, info};
 use std::net::SocketAddr;
 use tokio::net::{TcpListener, TcpStream};
-use tokio_tungstenite::{accept_async, tungstenite::protocol::Message};
 
 // pub struct Promise<T: Send, E: Send> {/* TODO: */}
 // // https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html
@@ -28,7 +30,27 @@ async fn main_js() -> Result<(), JsValue> {
     #[cfg(debug_assertions)]
     console_error_panic_hook::set_once();
 
-    // websocket-example
+    // Call you await
+    // TODO: smells like poopy. Need to rework it
+    let response = ws_ping("/snacks", "Spicy chips");
+
+    // TODO: REMOVE BEFORE FLIGHT!!!!!!
+    console::log_1(&JsValue::from_str("Initialized"));
+
+    console::log_1(&JsValue::from_str(&response));
+
+    Ok(())
+}
+
+// ref - wsPing(endpoint: string, message: string): Promise<string>
+#[wasm_bindgen]
+pub async fn ws_ping(
+    endpoint: &str,
+    message: &str,
+) -> impl Into<JsValue> -> dyn Future<Output = Result<JsValue, JsValue>> { // TODO: resolve this
+    // issue with impl and return type
+    alert(&format!("wsPing is alive"));
+
     env_logger::init();
 
     // let it be hardcoded ip and port for cyrrent task
@@ -43,34 +65,8 @@ async fn main_js() -> Result<(), JsValue> {
 
     while let Ok((stream, _remote_addr)) = listener.accept().await {
         // spawn new task for conn
-        tokio::spawn(handle_conn(stream));
+        tokio::spawn(handle_conn(stream)); // TODO: send 2nd arg - &msg
     }
-    // / websocket-example
-
-    // Call you await
-    // TODO: smells like poopy. Need to rework it
-    let response = ws_ping("/snacks", "Spicy chips");
-
-    console::log_1(&JsValue::from_str("Initialized"));
-
-    console::log_1(&JsValue::from_str(&response));
-
-    Ok(())
-}
-
-// ref - wsPing(endpoint: string, message: string): Promise<string>
-// TODO:
-// - result should be  Promise<string>
-#[wasm_bindgen]
-// pub async fn ws_ping(endpoint: &str, message: &str) -> String {
-pub fn ws_ping(endpoint: &str, message: &str) -> String {
-    #[cfg(debug_assertions)]
-    console_error_panic_hook::set_once();
-
-    // TODO:
-    alert(&format!("Sup, {} {}!", endpoint, message));
-
-    format!("Sup, {} {}!", endpoint, message).to_string()
 }
 
 async fn handle_conn(stream: TcpStream) {
@@ -83,10 +79,10 @@ async fn handle_conn(stream: TcpStream) {
         }
     };
 
-    // split ws => tx and rx (sender and receiver)
+    // get tx and rx (sender and receiver)
     let (mut sender, mut receiver) = ws_stream.split();
 
-    // handle inc messages
+    // handle incoming messages
     while let Some(msg) = receiver.next().await {
         match msg {
             Err(e) => {
@@ -96,7 +92,6 @@ async fn handle_conn(stream: TcpStream) {
             Ok(Message::Text(text)) => {
                 // TODO handle msg the way I need
                 let uppercased = text.to_uppercase();
-                // if let Err(e) = sender.send(Message::Text(uppercased)).await {
                 if let Err(e) = sender.send(Message::Text(uppercased)).await {
                     error!("Error while sending msg: {}", e);
                 }
@@ -126,6 +121,6 @@ async fn handle_conn(stream: TcpStream) {
 //
 //     #[test]
 //     fn endpoint_test() {
-//         assert_eq!(ws_ping("/snacks", "Spicy chips!"), "Sup, Spicy chips!");
+//         assert_eq!(ws_ping("/snacks", "Spicy chips!"), "SPICY CHIPS!");
 //     }
 // }
