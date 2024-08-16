@@ -10,7 +10,9 @@
 - [ ] test it out:
     - [ ] add dummy test for `pytest dlog_proof.py`
         - [ ] resolve an issue with htss_ecdsa lib 
-    - [ ] add dummy test for `cargo test`
+        - [ ] add curve = todo!("ecdsa::p256");
+        - [ ] add generator = todo!("curve.generator");
+        - [ ] add q = todo!("curve.order");
 - [] RustCrypto - check what it can do 
 - [] draft:
     - [ ] py class DLogProof -> RS struct and impl
@@ -21,3 +23,7 @@
 #### Glossari:
 - ZK - zero-knowledge
 - DLOG - discrete log
+- ECDSA - Elliptic Curve Digital Signature Algorithm
+
+#### Resourses:
+- https://github.com/RustCrypto

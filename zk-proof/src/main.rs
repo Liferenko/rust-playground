@@ -4,29 +4,31 @@
 use chrono::Utc;
 use std::fmt::format;
 use std::collections::HashMap;
+use getrandom;
+
+use crypto_bigint::{U256, Encoding};
+use ecdsa;
+use ecdsa::elliptic_curve; // TODO find PointJacobi
 use std::hash::Hash;
 use sha256::digest;
 
-use ecdsa;
-use ecdsa::elliptic_curve; // TODO find PointJacobi
+
+
+static curve = todo!("ecdsa::p256");
+static generator = todo!("curve.generator");
+static q = todo!("curve.order");
 
 
 
-let curve = todo!("ecdsa::p256");
-let generator = todo!("curve.generator");
-let q = todo!("curve.order");
-
-
-
-fn generate_random_number() {
-    todo!()
+fn generate_random_number() -> Uint {
+    U256::from_le_bytes(getrandom::getrandom(&mut [0u8; 32])?)
 }
 
 #[derive(PartialEq)]
 struct DLogProof {
     fn 
 
-    fn _hash_points(sid: str, pid: u8, points: [PointJacobi]) -> BigIntegerField.from_bytes() // TODO: replace return
+    fn _hash_points(sid: str, pid: u8, points: [PointJacobi]) -> U256  // TODO replace PointJacobi
 
     fn prove(sid: &str, pid: u8, x: u128, y: PointJacobi, base_point: PointJacobi = G) -> boolean,
 
@@ -45,8 +47,6 @@ impl DLogProof {
 
 
     // TODO: find out how to impl __init__
-    // TODO: find out how to impl __eq__
-    // TODO: find out how to impl __ne__
 
     fn prove(sid: &str, pid: u8, x: u128, y: PointJacobi, base_point: PointJacobi = G) {
         let r = generate_random_number();
@@ -63,6 +63,7 @@ impl DLogProof {
         let lhs = self.s * base_point;
         let rhs = self.t + (y * c);
         lhs == rhs;
+        todo!()
     }
 
     fn to_dict(self) {
@@ -83,6 +84,8 @@ impl DLogProof {
     }
 }
 
+// TODO: find out how to impl __eq__
+// TODO: find out how to impl __ne__
 impl PartialEq for DLogProof {
     fn eq(&self, other) {
         assert!(type(other), DLogProofField, "Can only compare DLogProofs") // TODO:

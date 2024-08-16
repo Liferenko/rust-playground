@@ -9,5 +9,7 @@ edition = "2021"
 json = {version = "0.12.4"}
 sha256 = {version = "1.5.0"}
 ecdsa = {version = "0.16.9"}
+crypto-bigint = "0.5.5"
 chrono = "0.4.38"
+getrandom = "0.2"
 # elliptic_curve = {version = "0.13.8"} // Might use ecdsa::ellip...
