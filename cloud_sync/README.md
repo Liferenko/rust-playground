@@ -25,6 +25,7 @@
 - [x] handle a response when 2nd party's request appears
 - [x] add 10 sec response timeout
     - [x] handle 10+ seconds no-response case
+- [x] add "How to use" in README 
 
 
 #### How to use
