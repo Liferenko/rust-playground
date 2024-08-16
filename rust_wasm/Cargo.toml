@@ -22,12 +22,13 @@ lto = true
 [dependencies]
 # The `wasm-bindgen` crate provides the bare minimum functionality needed
 # to interact with JavaScript.
-wasm-bindgen = "0.2.45"
+env_logger = "0.9"
+log = "0.4"
 tokio = { version = "1", features = ["full"]}
 tokio-tungstenite = "0.15"
+wasm-bindgen = "0.2.45"
+wasm-bindgen-futures = "0.4.43"
 futures = "0.3"
-log = "0.4"
-env_logger = "0.9"
 
 # `wee_alloc` is a tiny allocator for wasm that is only ~1K in code size
 # compared to the default allocator's ~10K. However, it is slower than the default
@@ -50,6 +51,4 @@ console_error_panic_hook = "0.1.5"
 # These crates are used for running unit tests.
 [dev-dependencies]
 wasm-bindgen-test = "0.2.45"
-futures = "0.1.27"
 js-sys = "0.3.22"
-wasm-bindgen-futures = "0.3.22"
