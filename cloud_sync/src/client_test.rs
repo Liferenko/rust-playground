@@ -1,15 +1,28 @@
-#[test]
-fn test_function() {
-    // TODO:
-    assert_eq!(2 + 2, 4);
-}
-#[tokio::main]
-async fn main() {
-    let mut client = Client::connect("localhost:4011").await.unwrap();
+use reqwest::Client;
+use std::time::Duration;
+use tokio::time::sleep;
 
-    client.set("foo", "bar".into()).await.unwrap();
+#[tokio::test]
+async fn test_post_request() {
+    let client = Client::new();
+    let url = "http://127.0.0.1:4012/wait-for-second-party/999";
 
-    // Getting the value immediately works
-    let val = client.get("foo").await.unwrap().unwrap();
-    assert_eq!(val, "bssar");
+    // Send the first request
+    let first_response = client
+        .post(url)
+        .send()
+        .await
+        .expect("Failed to send first request");
+    println!("First request response: {:?}", first_response);
+
+    // Wait for 2 seconds
+    sleep(Duration::from_secs(2)).await;
+
+    // Send the second request
+    let second_response = client
+        .post(url)
+        .send()
+        .await
+        .expect("Failed to send second request");
+    println!("Second request response: {:?}", second_response);
 }

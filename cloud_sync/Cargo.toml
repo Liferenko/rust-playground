@@ -10,3 +10,7 @@ author = "Paul Liferenko<liferenko.it@gmail.com>"
 tokio = { version = "1", features = ["full"] }
 mini-redis = "0.4"
 warp = "0.3.7"
+
+[dev-dependencies]
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1", features = ["full"] }

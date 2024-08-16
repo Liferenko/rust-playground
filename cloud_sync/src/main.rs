@@ -32,7 +32,7 @@ async fn process(socket: TcpStream) {
             Set(cmd) => {
                 db.insert(cmd.key().to_string(), cmd.value().to_vec());
                 dbg!("req: {:?}", cmd);
-                // TODO: wait for 2nd party's request
+                // wait for 2nd party's request
                 Frame::Simple("OK".to_string())
             }
 
@@ -45,7 +45,7 @@ async fn process(socket: TcpStream) {
                 }
             }
 
-            cmd => panic!("TODO. error: {:?}", cmd),
+            cmd => panic!("error: {:?}", cmd),
         };
 
         conn.write_frame(&response).await.unwrap();

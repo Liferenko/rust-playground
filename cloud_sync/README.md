@@ -28,6 +28,6 @@
 
 
 #### How to use
-- run client app - `cargo run --example client`
 - run server app - `cargo run`
+- run client app - `cargo run --example client`
 - test - `cargo test`
