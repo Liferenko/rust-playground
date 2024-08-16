@@ -1,32 +1,21 @@
 use chrono::Utc;
-use crypto_bigint::Encoding;
 use core::str;
 use std::fmt::format;
 use std::collections::HashMap;
 use getrandom;
 
-use k256::{elliptic_curve::Field, ProjectivePoint, Scalar, U256, sha2::Sha256};
-
-//# TODO: REMOVE BEFORE FLIGHT!!!!!!
-// use crypto_bigint::{U256, Encoding};
-// use crypto_bigint::consts::U256;
-// use ecdsa::{self, ECDSA_SHA224_OID};
-// use ecdsa::elliptic_curve::{self, point, ScalarPrimitive}; // TODO find ProjectivePoint
+use k256::{elliptic_curve::Field, ProjectivePoint, Scalar, Secp256k1, U256, sha2::Sha256};
 use sha256::digest;
 
 
-
-const G = ProjectivePoint::GENERATOR;
-const Q = todo!() // TODO: define which order shoyld be in use here
-
+const G: ProjectivePoint = ProjectivePoint::GENERATOR;
+const Q: U256 = Secp256k1::ORDER;
 
 
 fn generate_random_number() -> U256 {
     U256::from_le_bytes(getrandom::getrandom(&mut [0u8; 32])?)
 }
 
-// TODO:
-// - define ProjectivePoint
 #[derive(PartialEq)]
 struct DLogProof {
     t: ProjectivePoint,
@@ -93,14 +82,14 @@ impl DLogProof {
     }
     
     fn from_dict(data: HashMap<K, V>) {
-        todo!()   
+        todo!()
     }
 }
 
 // TODO: find out how to impl __eq__
 // TODO: find out how to impl __ne__  - check this one https://docs.rs/ec_core/latest/ec_core/elliptic_curve/struct.EllipticCurve.html#method.ne
 impl PartialEq<EllipticCurve> for DLogProof {
-    fn eq(&self, other) -> bool {
+    fn eq(&self, other: &EllipticCurve) -> bool {
         assert!(type(other), DLogProofField, "Can only compare DLogProofs") // TODO:
         // doublecheck `type(other)` and assert!/3 with msg as 3rd arg
     }
@@ -112,12 +101,16 @@ impl PartialEq<EllipticCurve> for DLogProof {
 } 
 
 
+//
+//# TODO: REMOVE BEFORE FLIGHT!!!!!!
 struct DLogProofField {
     fn serialize(self, dlog_proof) -> HashMap<K, V>;
     fn deserialize(self, data: HashMap<K, V>) -> DLogProof;
 }
 
-impl SerializerField from DLogProofField {
+// Im not sure I need serde here, coz its a struct
+// TODO: 
+impl SerializerField<DLogProof> from DLogProofField {
     fn serialize(self, dlog_proof) {
         dlog_proof.to_dict()
     };
@@ -133,15 +126,15 @@ fn main() {
 
     let x = generate_random_number();
     println!(x);
-    let y = x * generator; // TODO:
+    let y = x * G;
     
 
     let start_proof = Utc::now();
-    let dlog_proof = DLogProof.prove(sid, pid, x, y);
+    let dlog_proof = DLogProof::prove(DLogProof, sid, pid, x, y); // TODO: doublecheck 1st arg - maybe DLogProof::new() -> dlog_proof.prove(...)
 
     println!("Proof computation time: {} ms", format!((Utc::now() - start_proof) * 1000) );
 
-    println!("");
+    println!("---");
     println!(dlog_proof.t.x(), dlog_proof.t.y());
     println!(dlog_proof.s);
 
